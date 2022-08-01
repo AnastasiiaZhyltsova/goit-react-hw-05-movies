@@ -1,16 +1,16 @@
-export const App = () => {
+import { Routes, Route } from 'react-router-dom';
+import Layout from './Layout/Layout';
+import NotFoundView from './NotFoundView/NotFoundView';
+import Home from './Home/Home';
+
+export default function App() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="movies" />
+        <Route path="*" element={<NotFoundView />} />
+      </Route>
+    </Routes>
   );
-};
+}
