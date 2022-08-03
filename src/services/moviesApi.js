@@ -11,8 +11,8 @@ export function getTrending() {
   })
 }
 
-export function getSearchMovies() {
-  return fetch(`${BASE_URL}/search/movie?api_key=${KEY}`)
+export function getSearchMovies(searchQuery) {
+  return fetch(`${BASE_URL}/search/movie?api_key=${KEY}&query=${searchQuery}`)
   .then(response => {
     if (response.ok) {
       return response.json();
@@ -21,11 +21,11 @@ export function getSearchMovies() {
 }
 
 
-export function getMovieDetails(id) {
-  return fetch(`${BASE_URL}/movie/${id}?api_key=${KEY}`)
+export function getMovieDetails(movieId) {
+  return fetch(`${BASE_URL}/movie/${movieId}?api_key=${KEY}`)
     .then(response => {
       if (response.ok) {
-    return response.json
+        return response.json();
     }
   })
 }

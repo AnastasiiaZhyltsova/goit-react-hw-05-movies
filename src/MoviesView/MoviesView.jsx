@@ -4,7 +4,7 @@ import * as moviesApi from '../services/moviesApi';
 
 function MoviesView() {
   const [movies, setMovies] = useState([]);
-  console.log(movies);
+  // console.log(movies);
 
   useEffect(() => {
     moviesApi.getTrending().then(res => {
@@ -19,7 +19,7 @@ function MoviesView() {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movie.original_title}</Link>
+              <Link to={`movies/${movie.id}`}>{movie.original_title}</Link>
             </li>
           ))}
         </ul>
