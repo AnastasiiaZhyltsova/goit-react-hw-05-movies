@@ -29,3 +29,21 @@ export function getMovieDetails(movieId) {
     }
   })
 }
+
+export function getMovieCredits(movieId) {
+  return fetch(`${BASE_URL}/movie/${movieId}/credits?api_key=${KEY}`)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+    }
+  })
+}
+
+export function getMovieReviews(movieId) {
+   return fetch(`${BASE_URL}/movie/${movieId}/reviews?api_key=${KEY}`)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+    }
+  })
+}
