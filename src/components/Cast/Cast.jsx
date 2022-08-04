@@ -15,7 +15,6 @@ function Cast() {
     <>
       {credits && (
         <ul>
-          ({' '}
           {credits.map(credit => (
             <li key={credit.id}>
               <img
@@ -26,7 +25,6 @@ function Cast() {
               <p>Character: {credit.character}</p>
             </li>
           ))}
-          )
         </ul>
       )}
     </>

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { NavLink, useParams, Outlet } from 'react-router-dom';
 import * as moviesApi from '../../services/moviesApi';
 
+import style from './MovieDetails.module.css';
+
 function MovieDetails() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -14,14 +16,14 @@ function MovieDetails() {
   return (
     <>
       {movie && (
-        <>
+        <div className={style.details}>
           <img
             src={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
             alt={movie.original_title}
           />
           <div>
-            <h2>{movie.original_title}</h2>
-            <p>{movie.release_date}</p>
+            <h2 className={style.title}>{movie.original_title}</h2>
+            {/* <p>{movie.release_date}</p> */}
             <h3>Overview</h3>
             <p>{movie.overview}</p>
             <h4>Genres</h4>
@@ -31,7 +33,7 @@ function MovieDetails() {
               ))}
             </p>
           </div>
-        </>
+        </div>
       )}
       <hr />
       <div>
