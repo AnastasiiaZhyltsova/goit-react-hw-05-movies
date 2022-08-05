@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from './Layout/Layout';
-import NotFoundView from './NotFoundView/NotFoundView';
-import Home from './Home/Home';
-import Movies from './Movies/Movies';
-import MovieDetails from './MovieDetails/MovieDetails';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+import Layout from './pages/Layout/Layout';
+import NotFoundView from './pages/NotFoundView/NotFoundView';
+import Home from './pages/Home/Home';
+import Movies from './pages/Movies/Movies';
+import MovieDetails from './pages/MovieDetails/MovieDetails';
+import Cast from 'components/pages/Cast/Cast';
+import Reviews from 'components/pages/Reviews/Reviews';
 
 export default function App() {
   return (

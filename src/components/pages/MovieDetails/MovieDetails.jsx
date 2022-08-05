@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useParams, Outlet } from 'react-router-dom';
-import * as moviesApi from '../../services/moviesApi';
+import {
+  NavLink,
+  useParams,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
+import * as moviesApi from '../../../services/moviesApi';
 
 import style from './MovieDetails.module.css';
 
 function MovieDetails() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log('MovieDetails', location);
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   useEffect(() => {
@@ -12,8 +21,15 @@ function MovieDetails() {
       setMovie(data);
     });
   }, [movieId]);
+
+  const onGoBack = () => {
+    return navigate(location?.state?.from ?? '/');
+  };
   return (
     <>
+      <button type="button" onClick={onGoBack} className={style.button}>
+        Go back
+      </button>
       {movie && (
         <div className={style.details}>
           <img

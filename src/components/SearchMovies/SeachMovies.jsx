@@ -1,28 +1,30 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useSearchParams, useLocation } from 'react-router-dom';
 import style from './SearchMovies.module.css';
 
 import * as moviesApi from '../../services/moviesApi';
 import SearchForm from 'components/SearchForm/SearchForm';
 
 function SearchMovies() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchMovies, setSearcMovies] = useState([]);
 
-  // console.log(searchMovies);
+  const movieQuery = searchParams.get('quary');
+  const location = useLocation();
+
   useEffect(() => {
-    if (searchQuery === '') {
+    if (!movieQuery) {
       return;
     }
-    moviesApi.getSearchMovies(searchQuery).then(res => {
+    moviesApi.getSearchMovies(movieQuery).then(res => {
       setSearcMovies([...res.results]);
     });
-  }, [searchQuery]);
+  }, [movieQuery]);
 
   const searchFormSubmit = newSearchQuery => {
-    if (searchQuery !== newSearchQuery) {
+    if (movieQuery !== newSearchQuery) {
       setSearcMovies([]);
-      setSearchQuery(newSearchQuery);
+      setSearchParams({ quary: `${newSearchQuery}` });
     }
   };
   return (
@@ -32,7 +34,11 @@ function SearchMovies() {
         <ul className={style.list}>
           {searchMovies.map(movie => (
             <li key={movie.id} className={style.link}>
-              <NavLink to={`movies/${movie.id}`} className={style.movie_title}>
+              <NavLink
+                to={`${movie.id}`}
+                state={{ from: location }}
+                className={style.movie_title}
+              >
                 <img
                   src={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
                   alt={movie.original_title}

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import * as moviesApi from '../services/moviesApi';
 import style from './MoviesView.module.css';
 
 function MoviesView() {
+  const location = useLocation();
   const [movies, setMovies] = useState([]);
   console.log(movies);
   useEffect(() => {
@@ -19,7 +20,11 @@ function MoviesView() {
         <ul className={style.list}>
           {movies.map(movie => (
             <li key={movie.id} className={style.link}>
-              <NavLink to={`movies/${movie.id}`} className={style.movie_title}>
+              <NavLink
+                to={`movies/${movie.id}`}
+                state={{ from: location }}
+                className={style.movie_title}
+              >
                 <img
                   src={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
                   alt={movie.original_title}
