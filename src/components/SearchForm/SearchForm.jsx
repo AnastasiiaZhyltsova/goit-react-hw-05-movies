@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import style from './SearchForm.module.css';
 
 function SearchForm({ onSubmit }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,7 +17,7 @@ function SearchForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={style.form}>
       <input
         type="text"
         autoComplete="off"
@@ -24,8 +25,9 @@ function SearchForm({ onSubmit }) {
         placeholder="Search images and photos"
         value={searchQuery}
         onChange={handleChange}
+        className={style.input}
       />
-      <button type="submit">
+      <button type="submit" className={style.button}>
         <span>Search</span>
       </button>
     </form>

@@ -12,7 +12,6 @@ function MovieDetails() {
       setMovie(data);
     });
   }, [movieId]);
-
   return (
     <>
       {movie && (
@@ -20,27 +19,40 @@ function MovieDetails() {
           <img
             src={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
             alt={movie.original_title}
+            className={style.img}
           />
           <div>
-            <h2 className={style.title}>{movie.original_title}</h2>
-            {/* <p>{movie.release_date}</p> */}
-            <h3>Overview</h3>
-            <p>{movie.overview}</p>
-            <h4>Genres</h4>
-            <p>
+            <h2 className={style.title}>
+              {movie.original_title}({movie.release_date.slice(0, 4)})
+            </h2>
+            <p>User Score: {movie.vote_average}</p>
+            <h3 className={style.title}>Overview</h3>
+            <p className={style.overview}>{movie.overview}</p>
+            <h4 className={style.title}>Genres</h4>
+            <ul className={style.genres}>
               {movie.genres.map(genre => (
-                <li key={genre.id}>{genre.name}</li>
+                <li key={genre.id} className={style.genres_item}>
+                  {genre.name},
+                </li>
               ))}
-            </p>
+            </ul>
           </div>
         </div>
       )}
       <hr />
       <div>
-        <h5>Additional information</h5>
-        <ul>
-          <NavLink to="cast">Cast</NavLink>
-          <NavLink to="reviews">Reviews</NavLink>
+        <h5 className={style.title}>Additional information</h5>
+        <ul className={style.list}>
+          <li>
+            <NavLink to="cast" className={style.item}>
+              Cast
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="reviews" className={style.item}>
+              Reviews
+            </NavLink>
+          </li>
         </ul>
       </div>
       <Outlet />

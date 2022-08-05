@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as moviesApi from '../../services/moviesApi';
+import style from './Cast.module.css';
 
 function Cast() {
   const { movieId } = useParams();
-  const [credits, setCredits] = useState(0);
+  const [credits, setCredits] = useState(null);
   console.log(credits);
   useEffect(() => {
     moviesApi.getMovieCredits(movieId).then(res => {
@@ -14,15 +15,16 @@ function Cast() {
   return (
     <>
       {credits && (
-        <ul>
+        <ul className={style.list}>
           {credits.map(credit => (
             <li key={credit.id}>
               <img
                 src={'https://image.tmdb.org/t/p/w300' + credit.profile_path}
                 alt={credit.original_name}
+                className={style.img}
               />
-              <h6>{credit.original_name}</h6>
-              <p>Character: {credit.character}</p>
+              <h6 className={style.name}>{credit.original_name}</h6>
+              <p className={style.character}>Character: {credit.character}</p>
             </li>
           ))}
         </ul>

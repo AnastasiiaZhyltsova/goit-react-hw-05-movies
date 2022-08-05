@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import style from './SearchMovies.module.css';
 
 import * as moviesApi from '../../services/moviesApi';
 import SearchForm from 'components/SearchForm/SearchForm';
@@ -28,10 +29,17 @@ function SearchMovies() {
     <>
       <SearchForm onSubmit={searchFormSubmit} />
       {searchMovies && (
-        <ul>
+        <ul className={style.list}>
           {searchMovies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movie.original_title}</Link>
+            <li key={movie.id} className={style.link}>
+              <NavLink to={`movies/${movie.id}`} className={style.movie_title}>
+                <img
+                  src={'https://image.tmdb.org/t/p/w300' + movie.poster_path}
+                  alt={movie.original_title}
+                  className={style.img}
+                />
+                <p className={style.movie_titleaa}> {movie.original_title}</p>
+              </NavLink>
             </li>
           ))}
         </ul>
