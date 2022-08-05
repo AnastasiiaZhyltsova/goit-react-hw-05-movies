@@ -7,7 +7,7 @@ import style from './Reviews.module.css';
 function Reviews() {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(0);
-  console.log(reviews);
+
   useEffect(() => {
     moviesApi.getMovieReviews(movieId).then(data => {
       setReviews(data.results);

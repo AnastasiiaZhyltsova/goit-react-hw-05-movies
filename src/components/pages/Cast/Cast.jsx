@@ -6,7 +6,8 @@ import style from './Cast.module.css';
 function Cast() {
   const { movieId } = useParams();
   const [credits, setCredits] = useState(null);
-  console.log(credits);
+  // console.log(credits);
+
   useEffect(() => {
     moviesApi.getMovieCredits(movieId).then(res => {
       setCredits(res.cast);
@@ -19,7 +20,10 @@ function Cast() {
           {credits.map(credit => (
             <li key={credit.id}>
               <img
-                src={'https://image.tmdb.org/t/p/w300' + credit.profile_path}
+                src={
+                  'https://image.tmdb.org/t/p/w300' + credit.profile_path ||
+                  'https://meblibud.com.ua/upload/iblock/5c8/l5prersw1bmvltnwc37uzmih0d1fhe6f.jpg'
+                }
                 alt={credit.original_name}
                 className={style.img}
               />

@@ -32,7 +32,7 @@ export default function App() {
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
-        <Route path="/*" element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>

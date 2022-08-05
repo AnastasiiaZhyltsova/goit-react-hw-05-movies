@@ -13,9 +13,12 @@ import style from './MovieDetails.module.css';
 function MovieDetails() {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log('MovieDetails', location);
+
+  // console.log('MovieDetails', location);
+
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+
   useEffect(() => {
     moviesApi.getMovieDetails(movieId).then(data => {
       setMovie(data);
@@ -23,7 +26,9 @@ function MovieDetails() {
   }, [movieId]);
 
   const onGoBack = () => {
-    return navigate(location?.state?.from ?? '/');
+    // return navigate(-1);
+    return navigate(location?.state?.from);
+    //
   };
   return (
     <>
@@ -60,12 +65,12 @@ function MovieDetails() {
         <h5 className={style.title}>Additional information</h5>
         <ul className={style.list}>
           <li>
-            <NavLink to="cast" className={style.item}>
+            <NavLink to="cast" className={style.item} state={location.state}>
               Cast
             </NavLink>
           </li>
           <li>
-            <NavLink to="reviews" className={style.item}>
+            <NavLink to="reviews" className={style.item} state={location.state}>
               Reviews
             </NavLink>
           </li>
