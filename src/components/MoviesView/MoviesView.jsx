@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import * as moviesApi from '../services/moviesApi';
+import * as moviesApi from '../../services/moviesApi';
 import style from './MoviesView.module.css';
 
 function MoviesView() {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
-  console.log(movies);
+  // console.log(movies);
+
   useEffect(() => {
     moviesApi.getTrending().then(res => {
       setMovies([...res.results]);
