@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import {
   NavLink,
   useParams,
@@ -76,7 +76,9 @@ function MovieDetails() {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

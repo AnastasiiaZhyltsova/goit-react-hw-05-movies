@@ -9,7 +9,7 @@ function SearchMovies() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchMovies, setSearcMovies] = useState([]);
 
-  const movieQuery = searchParams.get('quary');
+  const movieQuery = searchParams.get('query');
   const location = useLocation();
 
   useEffect(() => {
@@ -24,12 +24,12 @@ function SearchMovies() {
   const searchFormSubmit = newSearchQuery => {
     if (movieQuery !== newSearchQuery) {
       setSearcMovies([]);
-      setSearchParams({ quary: `${newSearchQuery}` });
+      setSearchParams({ query: `${newSearchQuery}` });
     }
   };
   return (
     <>
-      <SearchForm onSubmit={searchFormSubmit} />
+      <SearchForm onSubmit={searchFormSubmit} query={movieQuery} />
       {searchMovies && (
         <ul className={style.list}>
           {searchMovies.map(movie => (

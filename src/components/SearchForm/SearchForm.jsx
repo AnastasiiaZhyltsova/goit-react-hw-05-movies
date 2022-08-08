@@ -3,8 +3,8 @@ import style from './SearchForm.module.css';
 
 import PropTypes from 'prop-types';
 
-function SearchForm({ onSubmit }) {
-  const [searchQuery, setSearchQuery] = useState('');
+function SearchForm({ onSubmit, query }) {
+  const [searchQuery, setSearchQuery] = useState(query || '');
 
   const handleChange = e => {
     setSearchQuery(e.currentTarget.value.toLowerCase());
@@ -39,5 +39,6 @@ function SearchForm({ onSubmit }) {
 export default SearchForm;
 
 SearchForm.propTypes = {
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
 };
